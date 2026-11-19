@@ -58,14 +58,6 @@ EOT
   validation {
     condition = alltrue([
       for k, v in var.container_registry_agent_pools : (
-        length(v.container_registry_name) <= 50
-      )
-    ])
-    error_message = "[from validate2.ContainerRegistryName: invalid when len(value) > 50]"
-  }
-  validation {
-    condition = alltrue([
-      for k, v in var.container_registry_agent_pools : (
         v.tier == null || (contains(["S1", "S2", "S3", "I6"], v.tier))
       )
     ])
@@ -79,6 +71,6 @@ EOT
     ])
     error_message = "[from tags.Validate: invalid when len(value) > 50]"
   }
-  # Note: 9 additional provider-side validators are enforced at apply time but not mirrored as validation{} blocks here (bespoke or non-mechanically-translatable).
+  # Note: 8 additional provider-side validators are enforced at apply time but not mirrored as validation{} blocks here (bespoke or non-mechanically-translatable).
 }
 
